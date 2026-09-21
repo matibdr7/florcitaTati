@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0221" />
+    <title>Una flor para michiquita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* El vale conserva la misma luz dorada que los demás pétalos. */
+      .voucher .note-card { background: radial-gradient(circle at 50% 35%, #fff2b9 0, #e8c95f 43%, #d2942a 100%); }
+      /* Cada párrafo de la carta respira de forma independiente. */
+      .letter-copy p + p { margin-top: 22px; }
+      /* La flor responde al tacto con luz, movimiento y polen. */
+      .petal { fill: url(#petal); cursor: pointer; }
+      #flowerWrap { cursor: pointer; }
+      #flowerWrap.awake { animation: flowerSway .8s ease-in-out both; }
+      #flowerWrap.awake .flower-aura { animation: auraPulse .8s ease-out both; }
+      .pollen { position:absolute; inset:0; pointer-events:none; overflow:visible; }
+      .pollen i { position:absolute; left:50%; top:29%; width:5px; height:5px; border-radius:50%; background:#ffe98e; box-shadow:0 0 9px 2px #ffd24d; opacity:0; }
+      .pollen.release i { animation: pollenRise .9s ease-out forwards; }
+      @keyframes flowerSway { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-3deg) scale(1.02)} 60%{transform:rotate(2deg) scale(1.01)} }
+      @keyframes auraPulse { 0%,100%{opacity:.16} 45%{opacity:.48} }
+      @keyframes pollenRise { 0%{opacity:0;transform:translate(-50%,0) scale(.2)} 20%{opacity:1} 100%{opacity:0;transform:translate(calc(-50% + var(--x)),var(--y)) scale(1)} }
+      @media (max-height: 720px) { .letter-scene { justify-content:flex-start; padding-top:42px; } .letter-copy { margin:18px 0 22px; } .letter-copy p { font-size:clamp(21px,6.8vw,27px); } .letter-copy p + p { margin-top:16px; } }
+      @media (max-width: 360px) { .scene { padding-left:20px; padding-right:20px; } .welcome h1 { font-size:40px; } .flower-wrap { width:92vw; } }
+    </style>
+  </head>
+  <body>
+    <main id="experience" class="experience intro">
+      <div class="sky" aria-hidden="true"><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span><span class="star s6"></span><span class="star s7"></span><span class="star s8"></span></div>
+      <div class="glow" aria-hidden="true"></div>
+
+      <section class="scene welcome active" data-scene="welcome">
+        <div class="opening-light" aria-hidden="true"></div>
+        <p class="eyebrow">21 · 09</p>
+        <h1>Mivida,<br />tengo alguito<br />para ti.</h1>
+        <button class="primary-button" id="openGift">Abrir</button>
+        <p class="hint">un pequeño regalo de yops</p>
+      </section>
+
+      <section class="scene bloom-scene" data-scene="flower">
+        <p class="eyebrow">Te amo mi loquita</p>
+        <div class="flower-stage">
+          <div class="flower-wrap" id="flowerWrap" aria-label="Flor amarilla interactiva">
+            <svg class="flower" viewBox="0 0 360 490" role="img" aria-label="Una flor amarilla">
+              <defs>
+                <linearGradient id="stem" x1="0" x2="1"><stop stop-color="#006494"/><stop offset="1" stop-color="#00afb5"/></linearGradient>
+                <radialGradient id="petal" cx="35%" cy="18%"><stop stop-color="#ffe993"/><stop offset=".58" stop-color="#f5bd3d"/><stop offset="1" stop-color="#d98c24"/></radialGradient>
+                <radialGradient id="center"><stop stop-color="#fff1a3"/><stop offset=".45" stop-color="#e7a62f"/><stop offset="1" stop-color="#a7511d"/></radialGradient>
+                <filter id="soft"><feGaussianBlur stdDeviation="4"/></filter>
+              </defs>
+              <ellipse class="flower-aura" cx="180" cy="160" rx="132" ry="125" fill="#f6c755" opacity=".16" filter="url(#soft)"/>
+              <path class="stem" d="M181 448 C177 361 185 285 181 210" fill="none" stroke="url(#stem)" stroke-width="12" stroke-linecap="round"/>
+              <path class="leaf leaf-left" d="M178 355 C130 343 100 312 96 271 C139 277 168 302 178 337Z" fill="#00afb5" opacity=".82"/>
+              <path class="leaf leaf-right" d="M184 395 C225 374 256 377 280 402 C239 421 207 415 184 406Z" fill="#006494" opacity=".88"/>
+              <g class="petals">
+                <g transform="rotate(0 181 164)"><ellipse class="petal p1" cx="181" cy="89" rx="39" ry="68"/></g>
+                <g transform="rotate(60 181 164)"><ellipse class="petal p2" cx="181" cy="89" rx="39" ry="68"/></g>
+                <g transform="rotate(120 181 164)"><ellipse class="petal p3" cx="181" cy="89" rx="39" ry="68"/></g>
+                <g transform="rotate(180 181 164)"><ellipse class="petal p4" cx="181" cy="89" rx="39" ry="68"/></g>
+                <g transform="rotate(240 181 164)"><ellipse class="petal p5" cx="181" cy="89" rx="39" ry="68"/></g>
+                <g transform="rotate(300 181 164)"><ellipse class="petal p6" cx="181" cy="89" rx="39" ry="68"/></g>
+              </g>
+              <circle class="flower-center" cx="181" cy="164" r="42" fill="url(#center)"/>
+              <circle cx="181" cy="164" r="28" fill="none" stroke="#ffd96f" stroke-width="2" stroke-dasharray="3 5" opacity=".9"/>
+              <circle cx="170" cy="151" r="3" fill="#fff0a4" opacity=".8"/><circle cx="194" cy="180" r="3" fill="#7f391d" opacity=".55"/>
+            </svg>
+            <span class="pollen" aria-hidden="true"></span>
+            <span class="touch-ring" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="bloom-copy"><h2>Feliz Primavera mi amorcito<br /> esto es para vos <span>💛</span></h2><p>tocá la flor y mirá cómo despierta</p></div>
+        <button class="text-button" id="continueToNote">baja por aki <span>↓</span></button>
+      </section>
+
+      <section class="scene letter-scene" data-scene="letter">
+        <div class="letter-light"></div>
+        <p class="eyebrow">toma para tu</p>
+        <div class="letter-copy" id="letterCopy">
+          <p>Aunque hoy nos toque querernos desde lejos y aveces sea un poquito mas dificil, los dos sabemos que nuestro amor siempre encuentra la forma de vivir</p>
+          <p>Hoy no puedo tocar tu puerta con una florcita pero puedo hacertela llegar de esta manera, con la esperanza de poder
+            dartela en persona lo mas pronto posible</p>
+          <p>Te amo un monton mi chiquita hermosa.</p>
+        </div>
+        <button class="primary-button small" id="returnToFlower">Ver la flor</button>
+      </section>
+
+      <section class="scene final-scene" data-scene="final">
+        <div class="sun-moon" aria-hidden="true"><span class="moon"></span><span class="sun"></span><i></i></div>
+        <div class="final-flower" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        <p class="eyebrow">un pedacito de luz para vos</p>
+        <h2>Feliz Primavera,<br /><em>mi amor.</em> <span>💛</span></h2>
+        <p class="signature">Te amo muchisisisismo.<br /><br />— Tu doncito</p>
+        <button class="text-button" id="replay">volver a verla <span>↻</span></button>
+      </section>
+
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
